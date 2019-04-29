@@ -22,6 +22,11 @@ export function items(state = [], action) {
   switch(action.type) {
     case 'ITEMS_FETCH_DATA_SUCCESS':
       return action.items;
+    
+    case 'ITEMS_DELETE_DATA_SUCCESS':
+      return [...state.slice(0, action.deletedItem), ...state.slice(action.deletedItem + 1)];
+      //state.splice(action.deletedItem,1)
+
     default:
       return state;
   }

@@ -40,3 +40,10 @@ export function itemsFetchData(url) {
      .catch(() => dispatch(itemsHasErrored(true)))
   })
 }
+
+export function itemsDeleteData(deletedItem) {
+  return{
+    type: 'ITEMS_DELETE_DATA_SUCCESS',
+    deletedItem
+  }
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { itemsFetchData } from '../actions/items';
+import { itemsFetchData, itemsDeleteData } from '../actions/items';
 
 
 class ItemList extends Component {
@@ -44,9 +44,11 @@ class ItemList extends Component {
         }
         return (
             <ul>
-                {this.props.items.map((item) => (
+                {this.props.items.map((item, index) => (
                     <li key={item.id}>
                         {item.label}
+                        {/* {item.id} */}
+                        <button onClick={() => this.props.deleteData(index)}>Delete</button>
                     </li>
                 ))}
             </ul>
@@ -64,7 +66,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = ((dispatch) => {
   return {
-    fetchData: (url) => dispatch(itemsFetchData(url))
+    fetchData: (url) => dispatch(itemsFetchData(url)),
+    deleteData: (items) => dispatch(itemsDeleteData(items))
   }
 })
 
